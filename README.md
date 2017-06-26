@@ -29,3 +29,21 @@ configurations.all {
   </ion-item>
 </ion-list>
 ```
+
+## Add Zones
+```typescript
+import { Component, NgZone } from '@angular/core';
+import { NavController } from 'ionic-angular';
+
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+export class HomePage {
+
+  constructor(public navCtrl: NavController, private zone: NgZone) {
+
+  }
+
+}
+```
