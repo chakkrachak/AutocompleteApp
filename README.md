@@ -9,4 +9,23 @@ $ cordova plugin add ~/dev/CDVNavitiaSDK
 $ ionic cordova emulate android --livereload
 ```
 
+Add this to platforms/android/build.gradle if the build fails
+```groovy
+configurations.all {
+   resolutionStrategy.force ‘junit:junit:4.8+’
+}
+```
 
+## Search bar
+```xml
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+```
+
+## Items list
+```xml
+<ion-list>
+  <ion-item *ngFor="let item of items">
+    {{ item }}
+  </ion-item>
+</ion-list>
+```
