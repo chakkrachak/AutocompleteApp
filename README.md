@@ -52,3 +52,31 @@ export class HomePage {
 ```typescript
 declare var NavitiaSDK: any;
 ```
+
+## Classe des enfers
+```typescript
+export class HomePage {
+  items;
+
+  constructor(public navCtrl: NavController, private zone: NgZone) {
+  	this.items = [];
+  	NavitiaSDK.init('0de19ce5-e0eb-4524-a074-bda3c6894c19');
+  }
+
+  getItems(ev) {
+  	this.items = [];
+
+  	// set val to the value of the ev target
+	var val = ev.target.value;
+
+	var that = this;
+    NavitiaSDK.endpoints.places.newRequestBuilder().withQ(val).get(function(success) {
+        that.zone.run(function () {
+               	that.items.push(success.places[0].name);
+            })
+    }, function(error) {
+        alert("error");
+    });
+  }
+}
+```
