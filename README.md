@@ -47,3 +47,8 @@ export class HomePage {
 
 }
 ```
+
+## Typescript likes to have declarations for all the vars
+```typescript
+declare var NavitiaSDK: any;
+```
