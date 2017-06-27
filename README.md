@@ -12,7 +12,7 @@ $ ionic cordova emulate android --livereload
 Add this to platforms/android/build.gradle if the build fails
 ```groovy
 configurations.all {
-   resolutionStrategy.force ‘junit:junit:4.8+’
+   resolutionStrategy.force 'junit:junit:4.8+'
 }
 ```
 
