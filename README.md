@@ -72,7 +72,9 @@ export class HomePage {
 	var that = this;
     NavitiaSDK.endpoints.places.newRequestBuilder().withQ(val).get(function(success) {
         that.zone.run(function () {
-               	that.items.push(success.places[0].name);
+               	for (var item of success.places) {
+                    that.items.push(item.name);
+                }
             })
     }, function(error) {
         alert("error");
