@@ -56,29 +56,33 @@ declare var NavitiaSDK: any;
 ## Classe des enfers
 ```typescript
 export class HomePage {
-  items;
+    items;
+    navitiaSDK;
 
-  constructor(public navCtrl: NavController, private zone: NgZone) {
-  	this.items = [];
-  	NavitiaSDK.init('0de19ce5-e0eb-4524-a074-bda3c6894c19');
-  }
+    constructor(public navCtrl: NavController, private zone: NgZone) {
+        this.items = [];
 
-  getItems(ev) {
-  	this.items = [];
+        this.navitiaSDK = new NavitiaSDK();
+        this.navitiaSDK.init('0de19ce5-e0eb-4524-a074-bda3c6894c19');
+    }
 
-  	// set val to the value of the ev target
-	var val = ev.target.value;
+    getItems(ev) {
+        this.items = [];
 
-	var that = this;
-    NavitiaSDK.endpoints.places.newRequestBuilder().withQ(val).get(function(success) {
-        that.zone.run(function () {
-               	for (var item of success.places) {
-                    that.items.push(item.name);
-                }
-            })
-    }, function(error) {
-        alert("error");
-    });
-  }
+        // set val to the value of the ev target
+        var val = ev.target.value;
+
+        var that = this;
+        this.navitiaSDK.placesApi.newPlacesRequestBuilder().withQ(val).get(
+            function (success) {
+                that.zone.run(function () {
+                    for (var item of success.places) {
+                        that.items.push(item.name);
+                    }
+                })
+            }, function (error) {
+                alert(error);
+            });
+    }
 }
 ```
