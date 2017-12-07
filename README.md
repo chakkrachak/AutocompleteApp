@@ -57,13 +57,9 @@ declare var NavitiaSDK: any;
 ```typescript
 export class HomePage {
     items;
-    navitiaSDK;
 
     constructor(public navCtrl: NavController, private zone: NgZone) {
         this.items = [];
-
-        this.navitiaSDK = new NavitiaSDK();
-        this.navitiaSDK.init('0de19ce5-e0eb-4524-a074-bda3c6894c19');
     }
 
     getItems(ev) {
@@ -73,7 +69,8 @@ export class HomePage {
         var val = ev.target.value;
 
         var that = this;
-        this.navitiaSDK.placesApi.newPlacesRequestBuilder().withQ(val).get(
+        NavitiaSDK.init('9e304161-bb97-4210-b13d-c71eaf58961c');
+      	NavitiaSDK.places.placesRequestBuilder().withQ(val).get(
             function (success) {
                 that.zone.run(function () {
                     for (var item of success.places) {
